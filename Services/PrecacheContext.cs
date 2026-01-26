@@ -74,6 +74,9 @@
 
                         package.Read(vpkPath);
 
+                        if (package.Entries == null)
+                            continue;
+
                         foreach (KeyValuePair<string, List<PackageEntry>> fileType in package.Entries)
                         {
                             if (!this.ResourceTypes.Contains(fileType.Key))
@@ -84,7 +87,7 @@
                                 string fullPath = entry.GetFullPath();
 
                                 if (fullPath.EndsWith("_c"))
-                                    fullPath = fullPath[.. ^ 2];
+                                    fullPath = fullPath[..^2];
 
                                 if (!this.AddResource(fullPath))
                                 {
@@ -92,7 +95,8 @@
                                 }
                             }
                         }
-                    } catch (Exception ex)
+                    }
+                    catch (Exception ex)
                     {
                         this.Logger.LogError("Unable to read package: '{0}' ({1})", packageName, ex.Message);
                     }
