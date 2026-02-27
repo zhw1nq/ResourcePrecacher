@@ -11,6 +11,10 @@
 
         public bool Log { get; set; } = true;
 
-        public override int Version { get; set; } = 5;
+        public bool LogFile { get; set; } = true;
+
+        public string DiscordWebhookUrl { get; set; } = "";
+
+        public override int Version { get; set; } = 7;
     }
 }

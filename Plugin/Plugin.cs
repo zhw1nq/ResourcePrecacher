@@ -29,7 +29,8 @@
                 if (this.Migrations.HasInstruction(config.Version, this.Config.Version))
                 {
                     base.Logger.LogWarning("Instruction for migrating your config file: {0}", this.Migrations.GetInstruction(config.Version, this.Config.Version));
-                } else
+                }
+                else
                 {
                     base.Logger.LogWarning("No migrating instruction available");
                 }
@@ -47,9 +48,9 @@
 
             this.PrecacheContext.Initialize();
 
-            if (this.Config.ResourceList.Count == 0)
+            if (this.Config.ResourceList.Count == 0 && this.PrecacheContext.ResourceCount == 0)
             {
-                base.Logger.LogWarning("'ResourceList' is empty, did you forget to upload the workshop packagre, or populate the list with resources?");
+                base.Logger.LogWarning("No resources found. Did you forget to upload workshop VPKs into the 'Assets' folder, or populate 'Resources' in the config?");
             }
 
             foreach (string resourcePath in this.Config.ResourceList)
